@@ -23,7 +23,14 @@ export class PostCreateComponent {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
-        this.post = this.postsService.getPost(this.postId);
+        this.postsService.getPost(this.postId)
+          .subscribe(responseData => {
+            this.post = {
+              id: responseData._id,
+              title: responseData.title,
+              content: responseData.content
+            };
+          });
       } else {
         this.mode = 'create';
         this.postId = null;

@@ -48,11 +48,13 @@ export class PostCreateComponent {
           this.post = {
             id: responseData._id,
             title: responseData.title,
-            content: responseData.content
+            content: responseData.content,
+            imagePath: responseData.imagePath
           };
           this.form.setValue({
             title: this.post.title,
-            content: this.post.content
+            content: this.post.content,
+            image: this.post.imagePath
           });
         });
       } else {
@@ -79,12 +81,13 @@ export class PostCreateComponent {
     }
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content);
+      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
     } else {
       this.postsService.updatePost(
         this.postId,
         this.form.value.title,
-        this.form.value.content
+        this.form.value.content,
+        this.form.value.image
       );
     }
     this.form.reset();

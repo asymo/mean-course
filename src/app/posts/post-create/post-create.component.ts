@@ -49,7 +49,8 @@ export class PostCreateComponent {
             id: responseData._id,
             title: responseData.title,
             content: responseData.content,
-            imagePath: responseData.imagePath
+            imagePath: responseData.imagePath,
+            creator: responseData.creator
           };
           this.form.setValue({
             title: this.post.title,
